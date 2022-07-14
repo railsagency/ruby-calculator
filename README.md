@@ -1,15 +1,13 @@
-# LdstudiosRubyCalculator
+# Ruby Calculator
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/ldstudios_ruby_calculator`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Build a memo-ized calculator with ease.  Calculate complex, interrelated metrics, statistics, and other values incredibly fast.
 
 ## Installation
 
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'ldstudios_ruby_calculator'
+gem 'ldstudios_ruby_calculator', git: 'https://github.com/ldstudios/ruby-calculator.git'
 ```
 
 And then execute:
@@ -22,7 +20,36 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class Calculator::Simple < Calculator::Base
+  attr_accessor :left, :right
+  
+  calculate(:sum) { left + right }
+  
+  calculate(:difference) { left - right }
+  
+  calculate(:product) { left * right }
+  
+  calculate(:quotient) { left / right }
+  
+  calculate(:average) do
+    sum / 2
+  end
+end
+```
+
+This simple calculator lets you calculate basic arithmetic between two values, left and right.  It uses predefined blocks to ensure calculations are not re-calculated.
+
+```ruby
+calculator = Calculator::Simple.new(left: 1, right: 1)
+
+calculator.average
+calculator.sum
+```
+
+In this example, the `average` method calls `sum`.  When the `sum` method is invoked directly, the value is already calculated and stored.  The calculator will not repeat this method but will instead return the previously stored value.  
+
+This pattern is incredibly fast when calculating inter-related, time-consuming, and computationally expensive operations.  Memoization FTW!  
 
 ## Development
 
