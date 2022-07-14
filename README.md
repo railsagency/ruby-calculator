@@ -21,7 +21,7 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-class Calculator::Simple < Calculator::Base
+class Calculator::Simple < LdstudiosRubyCalculator::Base
   attr_accessor :left, :right
   
   calculate(:sum) { left + right }
